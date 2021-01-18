@@ -1,4 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server');
+const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Book {
@@ -31,6 +32,16 @@ const resolvers = {
 
 const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true });
 
-server.listen({port: process.env.PORT || 4000 }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen({ port: process.env.PORT || 4000 }, () =>
+  console.log(`🚀 Server ready at ${server.graphqlPath}`)
+);
+
+
+
+
+
+
