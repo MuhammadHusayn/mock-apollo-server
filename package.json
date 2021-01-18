@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/MuhammadHusayn/mock-apollo-server#readme",
   "dependencies": {
-    "apollo-server": "latest"
+    "apollo-server": "2.19.2"
   }
 }
